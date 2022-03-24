@@ -3,7 +3,7 @@ package com.bl.addressbook;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Main {
+public class Contact {
     int id;
     String address;
     String firstName;
