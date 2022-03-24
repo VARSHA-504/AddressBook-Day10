@@ -1,16 +1,14 @@
 package com.bl.addressbook;
 
 import java.util.Scanner;
+import java.util.objects;
 import java.util.ArrayList;
 
-public class Main {
-
+public class AddressBook {
     int index = 0;
     static Scanner sc = new Scanner(System.in);
-    ArrayList<Contact> entry = new ArrayList<>();
+    static ArrayList<Contact> entry = new ArrayList<>();
 
-    //contact obj
-    //add details here
     void setContact(){
         Contact person = new Contact(index);
         System.out.println("Enter First Name: ");
@@ -29,9 +27,39 @@ public class Main {
         person.setPhoneNumber(sc.nextLine());
         System.out.println("Enter E-Mail: ");
         person.seteMail(sc.nextLine());
-        System.out.println("Add More Entry? ");
+        System.out.println("\n");
         entry.add(person);
         index ++;
+    }
+
+    void editContact(){
+        System.out.println("Enter the contact's First Name to be edited: ");
+        String firstName = sc.nextLine();
+        for (Contact person : entry){
+            if(Objects.equals(person.getFirstName(), firstName)){
+                System.out.println("Enter First Name: ");
+                person.setFirstName(sc.nextLine());
+                System.out.println("Enter Last Name: ");
+                person.setLastName(sc.nextLine());
+                System.out.println("Enter Address: ");
+                person.setAddress(sc.nextLine());
+                System.out.println("Enter City: ");
+                person.setCity(sc.nextLine());
+                System.out.println("Enter State: ");
+                person.setState(sc.nextLine());
+                System.out.println("Enter Zip Code: ");
+                person.setZip(sc.nextLine());
+                System.out.println("Enter Phone Number: ");
+                person.setPhoneNumber(sc.nextLine());
+                System.out.println("Enter E-Mail: ");
+                person.seteMail(sc.nextLine());
+                System.out.println("\n");
+                entry.set(entry.indexOf(person), person);
+            }
+            else{
+                System.out.println("The Contact doesn't Exist.");
+            }
+        }
     }
 
     void getContact(){
@@ -46,52 +74,5 @@ public class Main {
             System.out.println("Phone Number: " + e.phoneNumber);
             System.out.println("E-Mail: " + e.eMail + "\n");
         }
-    }
-}
-class Contact {
-    int id;
-    String address;
-    String firstName;
-    String lastName;
-    String city;
-    String state;
-    String zip;
-    String phoneNumber;
-    String eMail;
-
-    Contact(int index) {
-        this.id = index;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
     }
 }
